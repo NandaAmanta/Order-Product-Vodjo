@@ -46,7 +46,7 @@ class OrderController extends Controller
     }
 
     public function update($id, OrderUpdateRequest $request) {
-        $body = $request->all();
+        $body = $request->validated();
         $this->service->update($body,$id);
         return redirect()->route('orders.edit', ['id' => $id])->with([
             'type' => 'success',
