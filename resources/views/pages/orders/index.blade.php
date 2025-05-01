@@ -65,7 +65,7 @@
                     { 
                         "data": "order_no",
                         'searchable': true
-                     },
+                    },
                     { "data": "customer_name" },
                     { "data": "order_date" },
                     { "data": "grand_total" },
@@ -80,7 +80,8 @@
                                     </form>`).replaceAll(':id', data);
                         }
                     }
-                ]
+                ],
+                "order": [[0, 'desc']]
             });
         }
     </script>
