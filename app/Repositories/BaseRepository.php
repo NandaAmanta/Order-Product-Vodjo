@@ -13,7 +13,7 @@ interface BaseRepository
 
     public function create(array $data): Model;
 
-    public function updateById($id, array $data): Collection;
+    public function updateById($id, array $data): Model;
 
     public function deleteById($id): bool;
 

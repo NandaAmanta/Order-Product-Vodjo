@@ -25,11 +25,6 @@ class OrderProductUpdateRequest extends FormRequest
             'product_name' => 'required|string',
             'qty' => 'required|min:1',
             'price' => 'required|min:0',
-            'order_products' => 'array',
-            'order_products.*.id' => 'nullable',
-            'order_products.*.product_name' => 'required|string',
-            'order_products.*.qty' => 'required|min:1',
-            'order_products.*.price' => 'required|min:0',
         ];
     }
 }

@@ -32,7 +32,7 @@ abstract class BaseRepositoryImpl implements BaseRepository
         return $data;
     }
 
-    public function updateById($id, array $data): Collection
+    public function updateById($id, array $data): Model
     {
         $resource = $this->model->find($id);
         $resource->fill($data);

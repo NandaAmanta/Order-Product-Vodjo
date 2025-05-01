@@ -53,9 +53,7 @@
                             </div>
                         </div>
                         
-
-                        
-                        <div class="mt-5" id="order-products">
+                        <div class="mt-5  mb-5" id="order-products">
                             <div class="row justify-content-end">
                                 <div class="col-auto">
                                     <button class="btn btn-primary add-product">Add Product</button>
@@ -71,14 +69,13 @@
                                         <th>Subtotal</th>
                                         <th></th>
                                     </tr>
-                                    @foreach ($order->orderProducts as $orderProduct)
+                                    @foreach ($order->orderProducts as $index => $orderProduct)
                                         <tr>
-                                            <td class="pr-2">
-                                                <input type="text" name="product_name[]" class="form-control" value="{{ $orderProduct->product_name }}">
-                                            </td>    
-                                            <td class="pr-2"><input type="number" name="qty[]" class="form-control" value="{{ $orderProduct->qty }}"></td>
-                                            <td class="pr-2"><input type="number" name="price[]" class="form-control" value="{{ $orderProduct->price }}"></td>
-                                            <td class="pr-2"><input type="number" name="subtotal[]" class="form-control" value="{{ $orderProduct->subtotal }}" disabled></td>
+                                            <input type="hidden" name="order_products[{{ $index }}][id]" value="{{ $orderProduct->id }}">
+                                            <td class="pr-2"><input type="text" name="order_products[{{ $index }}][product_name]" class="form-control" value="{{ $orderProduct->product_name }}"></td>    
+                                            <td class="pr-2"><input type="number" name="order_products[{{ $index }}][qty]" class="form-control" value="{{ $orderProduct->qty }}"></td>
+                                            <td class="pr-2"><input type="number" name="order_products[{{ $index }}][price]" class="form-control" value="{{ $orderProduct->price }}"></td>
+                                            <td class="pr-2"><input type="number" name="order_products[{{ $index }}][subtotal]" class="form-control" value="{{ $orderProduct->subtotal }}" disabled></td>
                                             <td class="pr-2"><button type="button" class="btn btn-danger remove-product">Remove</button></td>
                                         </tr>
                                     @endforeach
@@ -111,13 +108,14 @@
 
         $(document).on('click', '.add-product', function(e){
             e.preventDefault();
+            let index = $('#table-order-products tr').length - 1;
             $('#table-order-products').append(`
                 <tr>
                     <td class="pr-2">
-                        <input type="text" name="product_name[]" class="form-control">
+                        <input type="text" name="order_products[${index}][product_name]" class="form-control">
                     </td>    
-                    <td class="pr-2"><input type="number" name="qty[]" class="form-control"></td>
-                    <td class="pr-2"><input type="number" name="price[]" class="form-control"></td>
+                    <td class="pr-2"><input type="number" name="order_products[${index}][qty]" class="form-control"></td>
+                    <td class="pr-2"><input type="number" name="order_products[${index}][price]" class="form-control"></td>
                     <td class="pr-2"><button type="button" class="btn btn-danger remove-product">Remove</button></td>
                 </tr>
             `);

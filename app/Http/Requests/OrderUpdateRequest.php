@@ -24,6 +24,11 @@ class OrderUpdateRequest extends FormRequest
         return [
             'customer_name' => 'required|string',
             'order_date' => 'required|date',
+            'order_products' => 'array',
+            'order_products.*.id' => 'nullable',
+            'order_products.*.product_name' => 'required|string',
+            'order_products.*.qty' => 'required|min:1',
+            'order_products.*.price' => 'required|min:0',
         ];
     }
 }

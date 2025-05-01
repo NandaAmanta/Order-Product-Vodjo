@@ -30,4 +30,25 @@ class OrderProductRepositoryImpl extends BaseRepositoryImpl implements OrderProd
         }
         return $this->model::insert($data);
     }
+
+    public function deleteByIds(array $ids): bool{
+        return $this->model::query()->whereIn('id', $ids)->delete();
+    }
+
+    public function createOrUpdateMany($orderId, array $orderProducts): bool{
+        $data = []; 
+        foreach ($orderProducts as $orderProduct) {
+            $data[] = [
+                'id' => $orderProduct['id'] ?? null,
+                'order_id' => $orderId,
+                'product_name' => $orderProduct['product_name'],
+                'qty' => $orderProduct['qty'],
+                'price' => $orderProduct['price'],
+                'subtotal' => $orderProduct['qty'] * $orderProduct['price'],
+                'created_at' => now(),
+                'updated_at' => now()
+            ];
+        }
+        return $this->model::upsert($data, ['id']);
+    }
 }
