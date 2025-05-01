@@ -4,7 +4,6 @@
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Orders</h1>
-            <a href="{{ route('orders.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Create Order</a>
         </div>
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -21,14 +20,18 @@
                         <td><input type="date" id="max" name="max" ></td>
                     </tr>
                 </tbody></table>
+            <div class="float-right">
+                <a href="" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Export</a>
+                <a href="{{ route('orders.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Create Order</a>
+            </div>
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>order_no</th>
-                                <th>Customer</th>
-                                <th>Order Date</th>
-                                <th>Grand Total</th>
+                                <th class="important">order_no</th>
+                                <th class="important">Customer</th>
+                                <th class="important">Order Date</th>
+                                <th class="important">Grand Total</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -55,6 +58,25 @@
         
         function initDatatable(){
             $('#dataTable').DataTable({
+                'aLengthMenu': [
+                    [25, 50, 100, 200, -1],
+                    [25, 50, 100, 200, "All"]
+                ],
+                'iDisplayLength': 25,
+                'layout': {
+                    'top1Start': {
+                        'buttons': [
+                            {
+                                extend: 'excel',
+                                text: 'Export to Excel',
+                                className: 'btn btn-sm btn-success mr-2',
+                                exportOptions: {
+                                    columns: ['.important']
+                                }
+                            }
+                        ]
+                    }
+                },
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
@@ -79,9 +101,8 @@
                                     <button class="btn btn-sm btn-danger delete" type="submit">Delete</button>
                                     </form>`).replaceAll(':id', data);
                         }
-                    }
-                ],
-                "order": [[0, 'desc']]
+                    }],
+                "order": [[0, 'desc']],
             });
         }
     </script>
