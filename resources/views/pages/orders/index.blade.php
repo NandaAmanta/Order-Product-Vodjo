@@ -12,16 +12,29 @@
             <div class="card-body">
                 <table border="0" cellspacing="5" cellpadding="5">
                     <tbody><tr>
-                        <td>Start date:</td>
-                        <td><input type="date" id="min" name="min" ></td>
+                        <td class="align-middle">Start date:</td>
+                        <td>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                </div>
+                                <input type="date" id="min" name="min" class="form-control">
+                            </div>
+                        </td>
                     </tr>
                     <tr>
-                        <td>End date:</td>
-                        <td><input type="date" id="max" name="max" ></td>
+                        <td class="align-middle">End date:</td>
+                        <td>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                </div>
+                                <input type="date" id="max" name="max" class="form-control">
+                            </div>
+                        </td>
                     </tr>
                 </tbody></table>
             <div class="float-right">
-                <a href="" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Export</a>
                 <a href="{{ route('orders.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Create Order</a>
             </div>
                 <div class="table-responsive">
