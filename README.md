@@ -63,3 +63,5 @@ To get started with this project, follow these steps:
    Visit `http://localhost:8000` to see the application in action.
 
 Feel free to contribute to the project by submitting issues or pull requests. For more details, consult the [contribution guidelines](CONTRIBUTING.md).
+
+here is the video demo : https://www.veed.io/view/990c3036-8011-4005-8936-e010e6945d0d?panel=share
